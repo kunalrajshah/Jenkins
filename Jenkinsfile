@@ -24,10 +24,26 @@ pipeline {
 
        }
 
+       stage('Publish POM') {
+          steps {
+              sh 'cp pom.xml pom.html'
+          }
+       }
+
        stage("Test Application"){
            steps {
                  sh "mvn test"
            }
-       } 
+       }
+        
+      post {
+          success {
+              publishHTML([
+                 reportDir: '.',
+                 reportFiles: 'pom.html',
+                 reportName: 'POM Viewer'
+             ])
+          }
+     }
    }
 }
