@@ -27,7 +27,7 @@ pipeline {
             steps {
                 git branch: 'main',
                     credentialsId: 'Github',
-                    url: 'https://github.com/kunalrajshah/Jenkins.git'
+                    url: 'https://github.com/kunalrajshah/end-to-end-cicd-pipeline.git'
             }
         }
 
