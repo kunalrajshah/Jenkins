@@ -1,53 +1,332 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>DevOps CI/CD Project</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
-            color: white;
-            text-align: center;
-            padding-top: 100px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kunal Kumar | IT Operations Analyst</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+        background: #f4f7fa;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 30px auto;
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    /* Header */
+    .hero {
+        background: linear-gradient(135deg, #0F172A, #1E3A8A);
+        color: white;
+        padding: 50px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+        margin-bottom: 10px;
+    }
+
+    .hero h3 {
+        font-weight: 400;
+        color: #dbeafe;
+        margin-bottom: 25px;
+    }
+
+    .contact {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .contact span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* Sections */
+    section {
+        padding: 40px;
+    }
+
+    h2 {
+        color: #1E3A8A;
+        margin-bottom: 20px;
+        border-left: 5px solid #2563EB;
+        padding-left: 15px;
+    }
+
+    /* Summary */
+    .summary {
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 25px;
+    }
+
+    /* Experience */
+    .experience-card {
+        background: #ffffff;
+        border-left: 5px solid #2563EB;
+        padding: 25px;
+        border-radius: 12px;
+        margin-top: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .experience-card h3 {
+        color: #1E3A8A;
+    }
+
+    .experience-card ul {
+        margin-top: 15px;
+        padding-left: 20px;
+    }
+
+    /* Projects */
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 20px;
+    }
+
+    .project-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        transition: 0.3s;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .project-card h3 {
+        color: #1E3A8A;
+        margin-bottom: 15px;
+    }
+
+    /* Skills */
+    .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .badge {
+        padding: 10px 18px;
+        border-radius: 30px;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .aws { background: #FF9900; }
+    .k8s { background: #326CE5; }
+    .terraform { background: #7B42BC; }
+    .linux { background: #2E7D32; }
+    .docker { background: #2496ED; }
+    .jenkins { background: #D33833; }
+    .git { background: #F05032; }
+
+    /* Certifications */
+    .cert-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    .cert-card {
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 20px;
+        border-top: 5px solid #2563EB;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        background: #0F172A;
+        color: white;
+    }
+
+    @media(max-width: 768px){
+        .hero {
+            padding: 30px 20px;
         }
 
-        .card {
-            background: rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 10px;
-            width: 60%;
-            margin: auto;
+        section {
+            padding: 25px;
         }
+    }
 
-        h1 {
-            font-size: 48px;
-        }
-
-        p {
-            font-size: 22px;
-        }
-    </style>
+</style>
 </head>
+
 <body>
 
-<div class="card">
-    <h1>🚀 DevOps CI/CD Pipeline Success</h1>
+<div class="container">
 
-    <p>Application successfully deployed using:</p>
+    <div class="hero">
+        <h1>Kunal Kumar</h1>
+        <h3>IT Operations Analyst | AWS & DevOps Enthusiast</h3>
 
-    <p>
-        GitHub<br>
-        Jenkins<br>
-        Maven<br>
-        SonarQube<br>
-        Docker<br>
-        Docker Hub
-    </p>
+        <div class="contact">
+            <span><i class="fas fa-envelope"></i> rajkunal7279@gmail.com</span>
+            <span><i class="fas fa-phone"></i> +91 6202904986</span>
+            <span><i class="fab fa-linkedin"></i> linkedin.com/in/kunalrajshah</span>
+            <span><i class="fab fa-github"></i> github.com/kunalrajshah</span>
+        </div>
+    </div>
 
-    <h3>Built by Kunal</h3>
+    <section>
+        <h2>Professional Summary</h2>
 
-    <p>Deployment Successful 🎉</p>
+        <div class="summary">
+            IT Operations professional with 2+ years of experience in handling production incidents,
+            driving effective root cause analysis, and ensuring high service availability.
+            Strong foundation in Linux, AWS services, networking, and monitoring tools, with
+            hands-on exposure to Kubernetes and containerized environments. Passionate about
+            DevOps practices and cloud technologies to build scalable and resilient systems.
+        </div>
+    </section>
+
+    <section>
+        <h2>Professional Experience</h2>
+
+        <div class="experience-card">
+            <h3>IT Operations Analyst – TSYS, Pune</h3>
+            <p><strong>Sep 2023 – Present</strong></p>
+
+            <ul>
+                <li>Managed end-to-end incident lifecycle ensuring SLA compliance.</li>
+                <li>Performed RCA for recurring incidents and contributed to long-term fixes.</li>
+                <li>Monitored applications using SolarWinds, LogicMonitor, and Spectrum.</li>
+                <li>Handled F5 load balancer activities and traffic migration with zero downtime.</li>
+                <li>Collaborated with SRE and DevOps teams to improve system reliability.</li>
+                <li>Troubleshot network devices and critical production systems.</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <section>
+        <h2>Featured Projects</h2>
+
+        <div class="project-grid">
+
+            <div class="project-card">
+                <h3>🚀 Highly Available 3-Tier Architecture on AWS</h3>
+
+                <ul>
+                    <li>Designed and deployed HA architecture using Terraform.</li>
+                    <li>Configured VPC, Public & Private Subnets, NAT Gateway, and ALB.</li>
+                    <li>Provisioned EC2 instances across multiple AZs.</li>
+                    <li>Automated infrastructure deployment using Infrastructure as Code.</li>
+                </ul>
+
+            </div>
+
+            <div class="project-card">
+                <h3>☸ Kubernetes Deployment on Minikube</h3>
+
+                <ul>
+                    <li>Containerized applications and deployed them on Minikube.</li>
+                    <li>Created Deployments, Services, and ReplicaSets.</li>
+                    <li>Exposed applications using NodePort and LoadBalancer services.</li>
+                    <li>Performed debugging using BusyBox and kubectl commands.</li>
+                </ul>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <h2>Technical Skills</h2>
+
+        <div class="badges">
+
+            <span class="badge aws">AWS</span>
+            <span class="badge terraform">Terraform</span>
+            <span class="badge k8s">Kubernetes</span>
+            <span class="badge docker">Docker</span>
+            <span class="badge linux">Linux</span>
+            <span class="badge jenkins">Jenkins</span>
+            <span class="badge git">Git</span>
+
+        </div>
+
+        <br>
+
+        <p><strong>Monitoring:</strong> SolarWinds, LogicMonitor, Splunk, PagerDuty</p>
+
+        <p><strong>ITSM:</strong> ServiceNow, Incident Management, Change Management</p>
+
+        <p><strong>Programming:</strong> Basic Bash Scripting, YAML</p>
+
+    </section>
+
+    <section>
+        <h2>Education</h2>
+
+        <div class="cert-card">
+            <strong>B.E. – Electrical & Electronics Engineering</strong><br>
+            Sir M. Visvesvaraya Institute of Technology, Bangalore<br>
+            CGPA: 8.4/10
+        </div>
+    </section>
+
+    <section>
+        <h2>Certifications</h2>
+
+        <div class="cert-list">
+
+            <div class="cert-card">
+                🏆 AWS Cloud Quest: Cloud Practitioner
+            </div>
+
+            <div class="cert-card">
+                🏆 AWS Cloud Practitioner Essentials
+            </div>
+
+            <div class="cert-card">
+                🏆 Kubernetes Application Developer (Learning Path)
+            </div>
+
+            <div class="cert-card">
+                🏆 Docker Essentials Training
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        © 2026 Kunal Kumar • Built with HTML & CSS • AWS | Kubernetes | Terraform
+    </footer>
+
 </div>
 
 </body>
 </html>
+```
