@@ -43,21 +43,5 @@ pipeline {
 	           }	
            }
        }
-
-        stage("Publish POM") {
-            steps {
-                sh "cp pom.xml pom.html"
-            }
-        }
-    }
-
-    post {
-        success {
-            publishHTML([
-                reportDir: '.',
-                reportFiles: 'pom.html',
-                reportName: 'POM Viewer'
-            ])
-        }
-    }
+	}
 }
