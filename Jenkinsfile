@@ -109,7 +109,7 @@ pipeline {
                 echo "Running new container..."
                 docker run -d \
                     --name register-app \
-                    -p 8080:8080 \
+                    -p 8080:80 \
                     ${IMAGE_NAME}:latest
 
                 echo "Deployment completed successfully."
