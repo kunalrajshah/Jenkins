@@ -6,14 +6,13 @@ pipeline {
         maven 'Maven3'
     }
 
-	environment {
-	        APP_NAME = "register-app-pipeline"
-            RELEASE = "1.0.0"
-            DOCKER_USER = "shahkunal0709"
-            DOCKER_PASS = 'dockerhub'  //docker cred id in jenkins
-            IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
-            IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-	        // JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
+    environment {
+        APP_NAME = "register-app-pipeline"
+        RELEASE = "1.0.0"
+        DOCKER_USER = "shahkunal0709"
+        DOCKER_PASS = 'dockerhub'          // Jenkins DockerHub credentials ID
+        IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
+        IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     }
 
     stages {
@@ -34,55 +33,88 @@ pipeline {
 
         stage("Build Application") {
             steps {
-                sh "mvn clean package"
+                sh 'mvn clean package'
             }
         }
 
         stage("Test Application") {
             steps {
-                sh "mvn test"
+                sh 'mvn test'
             }
         }
 
-        stage("SonarQube Analysis"){
-           steps {
-	           script {
-		        withSonarQubeEnv(credentialsId: 'Jenkins-sonarqube-token') { 
-                        sh "mvn sonar:sonar"
-		        }
-	           }	
-           }
-       }
-
-	   stage("Quality Gate"){
-           steps {
-               script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'Jenkins-sonarqube-token'
-                }	
-            }
-        }
-
-		stage("Build & Push Docker Image") {
+        stage("SonarQube Analysis") {
             steps {
                 script {
-                    docker.withRegistry('',DOCKER_PASS) {               // '' mean default dockerhub url
-                        docker_image = docker.build "${IMAGE_NAME}"
-                    }
-
-                    docker.withRegistry('',DOCKER_PASS) {
-                        docker_image.push("${IMAGE_TAG}")
-                        docker_image.push('latest')
+                    withSonarQubeEnv('SonarQube') {
+                        sh 'mvn sonar:sonar'
                     }
                 }
             }
-       }
+        }
 
-		stage("Trivy Scan") {
-           steps {
-               script {
-	            sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image shahkunal0709/register-app-pipeline:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table')
-               }
-           }
-       }
-	}
+        stage("Quality Gate") {
+            steps {
+                script {
+                    waitForQualityGate abortPipeline: false
+                }
+            }
+        }
+
+        stage("Build & Push Docker Image") {
+            steps {
+                script {
+                    docker.withRegistry('', DOCKER_PASS) {
+
+                        def dockerImage = docker.build("${IMAGE_NAME}")
+
+                        dockerImage.push("${IMAGE_TAG}")
+                        dockerImage.push('latest')
+                    }
+                }
+            }
+        }
+
+        stage("Trivy Scan") {
+            steps {
+                sh """
+                docker run --rm \
+                  -v /var/run/docker.sock:/var/run/docker.sock \
+                  aquasec/trivy image \
+                  ${IMAGE_NAME}:latest \
+                  --no-progress \
+                  --scanners vuln \
+                  --exit-code 0 \
+                  --severity HIGH,CRITICAL \
+                  --format table
+                """
+            }
+        }
+
+        stage("Deploy Application") {
+            steps {
+                sh """
+                echo "Stopping existing container if running..."
+                docker stop register-app || true
+
+                echo "Removing existing container if present..."
+                docker rm register-app || true
+
+                echo "Removing old image..."
+                docker rmi ${IMAGE_NAME}:latest || true
+
+                echo "Pulling latest image from Docker Hub..."
+                docker pull ${IMAGE_NAME}:latest
+
+                echo "Running new container..."
+                docker run -d \
+                    --name register-app \
+                    -p 8080:8080 \
+                    ${IMAGE_NAME}:latest
+
+                echo "Deployment completed successfully."
+                """
+            }
+        }
+    }
 }
